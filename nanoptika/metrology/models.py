@@ -17,11 +17,13 @@ class MeasuringInstrument(models.Model):
     name = models.CharField(verbose_name='Наименование СИ', max_length=128)
     type_of_measurment = models.ForeignKey(TypeOfMeasurment, verbose_name='Тип измерений', on_delete=models.CASCADE)
     state_register_number = models.CharField(verbose_name='ГРСИ №', max_length=16)
-    # year = models.CharField(verbose_name='Год выпуска', max_length=4, default=0)
-    # invertarian_number = models.CharField(verbose_name='Инвертарный номер', max_length=6, default=0000)
+    accuracy = models.TextField(verbose_name='Погрешность', max_length=256, default='-')
     factory_number = models.CharField(verbose_name='Заводской номер', max_length=16)
     expluatation_place = models.CharField(verbose_name='Место эксплуатации', max_length=128)
     status = models.CharField(max_length=16, choices=STATUS_CHOICES, default='in_storage')
 
+
     def __str__(self):
         return f'{self.name}'
+
+# class CalibrationResult(models.Model):
