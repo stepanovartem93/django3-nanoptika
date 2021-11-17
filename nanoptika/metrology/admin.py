@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import TypeOfMeasurment, MeasuringInstrument
+from .models import TypeOfMeasurment, MeasuringInstrument, CalibrationResult
 
 @admin.register(MeasuringInstrument)
 class MeasuringInstrumentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'type_of_measurment', 'accuracy', 'state_register_number', 
+    list_display = ('name', 'type_of_measurment', 'link_to_fgis', 
     'factory_number', 'expluatation_place', 'status',)
     list_filter = ('type_of_measurment', 'state_register_number', 'expluatation_place', 'status',)
-    search_fileds = ('name','state_register_number',)
-    ordering = ('state_register_number', 'status', 'expluatation_place',)
+    search_fields = ('name', 'factory_number', )
+    ordering = ('status', 'expluatation_place',)
     list_editable = ('status',)
 
 
@@ -15,3 +15,8 @@ class MeasuringInstrumentAdmin(admin.ModelAdmin):
 @admin.register(TypeOfMeasurment)
 class TypeOfMeasurmentAdmin(admin.ModelAdmin):
     list_display = ('measurment',)
+
+@admin.register(CalibrationResult)
+class CalibrationResult(admin.ModelAdmin):
+    list_display = ('calibration_organisation', 'factory_number', 'calibration_date', 'calibration_date_finish', 'document_number')
+    
