@@ -16,7 +16,8 @@ class MeasuringInstrument(models.Model):
         ('in storage', 'На хранении'),
     )
     factory_number = models.CharField(verbose_name='Заводской номер', max_length=16)
-    name = models.CharField(verbose_name='Наименование СИ', max_length=128)
+    name_of_type_mi = models.CharField(verbose_name='Наименование типа СИ', max_length=128, default='')
+    name = models.CharField(verbose_name='Модификация СИ', max_length=128, default='Нет модификации')
     type_of_measurment = models.ForeignKey(TypeOfMeasurment, verbose_name='Тип измерений', on_delete=models.CASCADE)
     state_register_number = models.CharField(verbose_name='ГРСИ №', max_length=16)
     expluatation_place = models.CharField(verbose_name='Место эксплуатации', max_length=128)
@@ -25,12 +26,10 @@ class MeasuringInstrument(models.Model):
 
 
     def __str__(self):
-        return f'{self.factory_number}'
+        return f'{self.name, self.factory_number}'
 
 class CalibrationResult(models.Model):
     calibration_organisation = models.CharField(verbose_name='Организация-поверитель', max_length=128)
-    # name_of_type_mi = models.CharField(verbose_name='Наименование типа СИ', max_length=128)
-    # modification_mi = models.CharField(verbose_name='Модификация СИ', max_length=128)
     factory_number = models.ForeignKey(MeasuringInstrument, verbose_name='Заводской номер', on_delete=models.CASCADE)
     calibration_date = models.DateField(verbose_name='Дата проведения поверки/калибровки')
     calibration_date_finish = models.DateField(verbose_name='Дата окончания действия поверки/калибровки')
