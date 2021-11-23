@@ -1,0 +1,35 @@
+{% extends 'nanoptika\base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Перечень средств измерений, применяемых в ООО "НанОптика"</h1>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Наименование типа СИ</th>
+            <th scope="col">Модификация СИ</th>
+            <th scope="col">Заводской номер</th>
+            <th scope="col">ГРСИ №</th>
+            <th scope="col">Место эксплуатации</th>
+            <th scope="col">Статус</th>
+            <th scope="col">ФГИС "Аршин"</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for instrument in instruments %}
+        <tr>
+            <th scope="col">{{ instrument.name_of_type_mi }}</th>
+            <th scope="col">{{ instrument.name }}</th>
+            <th scope="col">{{ instrument.factory_number }}</th>
+            <th scope="col">{{ instrument.state_register_number }}</th>
+            <th scope="col">{{ instrument.expluatation_place }}</th>
+            <th scope="col">{{ instrument.status }}</th>
+            {% if instrument.link_to_fgis %}
+                <th scope="col"><a href="{{ instrument.link_to_fgis }}" target="_blank">Ссылка</a></th>
+            {% endif %}
+        </tr>
+    {% endfor %}
+
+{% endblock %} 

@@ -2,5 +2,14 @@
 {% load static %}
 
 {% block content %}
-<h1>Метрология</h1>
+
+<ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'metrology:all_measuring_instruments' %}">Перечень средств измерений</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Сведения о поверке</a>
+    </li>
+</ul>
+
 {% endblock %}
