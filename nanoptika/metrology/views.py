@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def main(request):
+    context = {
+        'page_title':'Метрология',
+    }
+    return render(request, 'metrology/index.html', context)
